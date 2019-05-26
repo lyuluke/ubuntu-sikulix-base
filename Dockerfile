@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 #thanks https://github.com/unikrn/docker-python-opencv/blob/master/Dockerfile
 #thanks https://github.com/kkochubey1/docker_sikuli_chrome_x11vnc
 
-LABEL  maintainer="lvkun"
+LABEL  maintainer=""
 
 # ubuntu chinese source
 RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list
