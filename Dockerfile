@@ -23,23 +23,23 @@ RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc
     ca-certificates \
     unzip \
     wget \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
+  && apt-get clean && rm -rf /var/lib/apt/lists/* \
   && sudo useradd seluser --shell /bin/bash --create-home \
   && sudo usermod -a -G sudo seluser \
   && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers \
   && echo 'seluser:a123456789' | chpasswd \
   && apt-get -qqy install openssh-server \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
+  && apt-get clean && rm -rf /var/lib/apt/lists/* \
   cd / && \
     wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz -O openjdk-11.0.2_linux-x64_bin.tar.gz && \
     tar zxf openjdk-11.0.2_linux-x64_bin.tar.gz && rm -f openjdk-11.0.2_linux-x64_bin.tar.gz && \
-	ln -s /jdk-11.0.2/bin/java /usr/bin/java &&\
+	ln -s /jdk-11.0.2/bin/java /usr/bin/java && \
 	mkdir -p /root/SikuliX && \
     cd /root/SikuliX && \
     wget https://raiman.github.io/SikuliX1/sikulixapi.jar -O sikulixapi.jar && \
     wget https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.1/jython-standalone-2.7.1.jar && \
 	echo 'deb http://security.ubuntu.com/ubuntu xenial-security main' >> /etc/apt/sources.list && \
-	apt-get update --fix-missing && apt-get install tzdata -qy &&\
+	apt-get update --fix-missing && apt-get install tzdata -qy && \
     apt-get install -qy \
     cmake git\
     python-numpy python-scipy python-pip python-setuptools \
@@ -49,7 +49,7 @@ RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc
     libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libgtk2.0-dev libatlas-base-dev \
     libv4l-0 libavutil-dev ffmpeg libavresample-dev libgstreamer1.0-dev \
     vdpau-va-driver libvdpau-va-gl1 vdpauinfo \
-    gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad\
+    gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
     libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libgstreamer-plugins-bad1.0-dev \
     gstreamer1.0-libav gstreamer1.0-vaapi gstreamer1.0-tools \
     gfortran python2.7-dev python3-dev build-essential pkg-config && \
@@ -79,8 +79,8 @@ RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc
     -D CMAKE_CXX_FLAGS="-O3 -funsafe-math-optimizations" \
     -D CMAKE_C_FLAGS="-O3 -funsafe-math-optimizations" \
     .. && make -j $(nproc) && make install && \
-    cd /root && rm -rf opencv-3.4.5 opencv_contrib-3.4.5 && \	
-  apt-get install x11-apps vainfo git -qy &&\
+    cd /root && rm -rf opencv-3.4.5 opencv_contrib-3.4.5 && \
+  apt-get install x11-apps vainfo git -qy && \
     apt-get purge -qy \
     build-essential \
     libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev \
@@ -104,7 +104,7 @@ RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc
     x11vnc \
   && rm -rf /var/lib/apt/lists/* \
   && mkdir -p ~/.vnc \
-  && x11vnc -storepasswd a123456789 ~/.vnc/passwd
+  && x11vnc -storepasswd a123456789 ~/.vnc/passwd \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \
   apt-get update -qqy \
   && apt-get -qqy install \
@@ -112,7 +112,7 @@ RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc
      fluxbox \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \
   apt-get update -qqy \
-  && apt-get -qqy remove tesseract-ocr*  \
+  && apt-get -qqy remove tesseract-ocr* \
     libleptonica-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \
   apt-get update -qqy \
@@ -162,4 +162,3 @@ RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc
 	
 EXPOSE 5900
 CMD ["/bin/bash"]
-	
