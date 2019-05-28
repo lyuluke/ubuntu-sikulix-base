@@ -12,8 +12,8 @@ ENV SCREEN_WIDTH 1920
 ENV SCREEN_HEIGHT 1200
 ENV SCREEN_DEPTH 24
 ENV DISPLAY :0
-ENV LANGUAGE en_US.UTF-8
-ENV LANG en_US.UTF-8
+#ENV LANGUAGE en_US.UTF-8
+#ENV LANG en_US.UTF-8
 #sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list && \
 #  sed -i "s@http://.*security.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list && \
 # ubuntu chinese source
@@ -89,9 +89,6 @@ RUN apt-get update && apt-get -y install sudo && apt-get install -y locales \
   apt-get update && apt-get -qqy --no-install-recommends install libopencv3.2-java && \
     sudo ln -s /usr/lib/jni/libopencv_java320.so /usr/lib/libopencv_java.so && \
 	apt-get clean && rm -rf /var/lib/apt/lists/* && \
-  apt-get update && apt-get -qqy --no-install-recommends install libopencv3.2-java && \
-    sudo ln -s /usr/lib/jni/libopencv_java320.so /usr/lib/libopencv_java.so && \
-	apt-get clean && rm -rf /var/lib/apt/lists/* && \
   apt-get update && apt-get -qqy install \
     xvfb \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \ 
@@ -135,6 +132,8 @@ RUN apt-get update && apt-get -y install sudo && apt-get install -y locales \
   apt-get update && sudo apt-get install -y supervisor \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \
   chmod +x /opt/bin/entry_point.sh && \
+  export LANGUAGE=en_US.UTF-8 && \
+  export LANG=en_US.UTF-8 && \
   locale-gen en_US.UTF-8 \
   && dpkg-reconfigure --frontend noninteractive locales \
   && apt-get update && apt-get -qqy --no-install-recommends install \
@@ -149,6 +148,7 @@ RUN apt-get update && apt-get -y install sudo && apt-get install -y locales \
   apt-get remove -y --auto-remove curl make gcc  && \
   apt-get clean                                  && \
   rm -rf /var/lib/apt/lists/*  /redis-$VER
-	
+ENV LANGUAGE en_US.UTF-8
+ENV LANG en_US.UTF-8	
 EXPOSE 5900
 CMD ["/bin/bash"]
