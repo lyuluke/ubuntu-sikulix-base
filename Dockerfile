@@ -14,11 +14,10 @@ ENV SCREEN_DEPTH 24
 ENV DISPLAY :0
 ENV LANGUAGE en_US.UTF-8
 ENV LANG en_US.UTF-8
-
+#sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list \
+#sed -i "s@http://.*security.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list \
 # ubuntu chinese source
-RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list \
-  && sed -i "s@http://.*security.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list \
-  && apt-get update && apt-get -y install sudo && apt-get install -y locales \
+RUN apt-get update && apt-get -y install sudo && apt-get install -y locales \
   && apt-get -qqy --no-install-recommends install \
     ca-certificates \
     unzip \
@@ -39,7 +38,7 @@ RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc
     wget https://raiman.github.io/SikuliX1/sikulixapi.jar -O sikulixapi.jar && \
     wget https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.1/jython-standalone-2.7.1.jar && \
 	echo 'deb http://security.ubuntu.com/ubuntu xenial-security main' >> /etc/apt/sources.list && \
-	apt-get update --fix-missing && apt-get install tzdata -qy && \
+	apt-get install tzdata -qy && \
     apt-get install -qy \
     cmake git\
     python-numpy python-scipy python-pip python-setuptools \
@@ -87,39 +86,31 @@ RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc
     libv4l-dev libxvidcore-dev libx264-dev libgtk2.0-dev libatlas-base-dev \
     gfortran pkg-config cmake && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-  apt-get update -qqy \
-  && apt-get -qqy --no-install-recommends install libopencv3.2-java && \
+  apt-get -qqy --no-install-recommends install libopencv3.2-java && \
     sudo ln -s /usr/lib/jni/libopencv_java320.so /usr/lib/libopencv_java.so && \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* && \
-  apt-get update -qqy \
-  && apt-get -qqy --no-install-recommends install libopencv3.2-java && \
+  apt-get -qqy --no-install-recommends install libopencv3.2-java && \
     sudo ln -s /usr/lib/jni/libopencv_java320.so /usr/lib/libopencv_java.so && \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* && \
-  apt-get update -qqy \
-  && apt-get -qqy install \
+  apt-get -qqy install \
     xvfb \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \ 
-  apt-get update -qqy \
-  && apt-get -qqy install \
+  apt-get -qqy install \
     x11vnc \
   && rm -rf /var/lib/apt/lists/* \
   && mkdir -p ~/.vnc \
   && x11vnc -storepasswd a123456789 ~/.vnc/passwd \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \
-  apt-get update -qqy \
-  && apt-get -qqy install \
+  apt-get -qqy install \
      x.org \
      fluxbox \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \
-  apt-get update -qqy \
-  && apt-get -qqy remove tesseract-ocr* \
+  apt-get -qqy remove tesseract-ocr* \
     libleptonica-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \
-  apt-get update -qqy \
-  && apt-get autoclean -qqy && sudo apt-get autoremove --purge -qqy \
+  apt-get autoclean -qqy && sudo apt-get autoremove --purge -qqy \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \
-  apt-get update -qqy \
-  && apt-get -qqy --no-install-recommends install \
+  apt-get -qqy --no-install-recommends install \
   autoconf automake libtool autoconf-archive pkg-config \
   libpng-dev libjpeg8-dev libtiff5-dev zlib1g-dev libicu-dev \
   libpango1.0-dev libcairo2-dev \
@@ -141,24 +132,23 @@ RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc
     unzip sikulix4python-master.zip && rm -f sikulix4python-master.zip && \
     cp -r /root/sikulix4python-master/sikulix4python   /usr/local/lib/python3.6/dist-packages/ && \
     cd /root &&  rm -rf sikulix4python-master && \
-  apt-get update -qqy \
-  && sudo apt-get install -y supervisor \
+  sudo apt-get install -y supervisor \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \
   chmod +x /opt/bin/entry_point.sh && \
   locale-gen en_US.UTF-8 \
   && dpkg-reconfigure --frontend noninteractive locales \
-  && apt-get update -qqy \
   && apt-get -qqy --no-install-recommends install \
     language-pack-en \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \	
-  apt-get update -qqy \
-  && apt-get -qqy --no-install-recommends install \
+  apt-get -qqy --no-install-recommends install \
     fonts-ipafont-gothic \
     xfonts-100dpi \
     xfonts-75dpi \
     xfonts-cyrillic \
     xfonts-scalable \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* && \
+  apt-get remove -y --auto-remove curl make gcc  && \
+  apt-get clean                                  && \
+  rm -rf /var/lib/apt/lists/*  /redis-$VER
 	
 EXPOSE 5900
 CMD ["/bin/bash"]
