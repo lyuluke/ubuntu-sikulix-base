@@ -14,12 +14,10 @@ ENV SCREEN_DEPTH 24
 ENV DISPLAY :0
 ENV LANGUAGE en_US.UTF-8
 ENV LANG en_US.UTF-8
-#sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list \
-#sed -i "s@http://.*security.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list \
+#sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list && \
+#  sed -i "s@http://.*security.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list && \
 # ubuntu chinese source
-RUN sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list && \
-  sed -i "s@http://.*security.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list && \
-  apt-get update && apt-get -y install sudo && apt-get install -y locales \
+RUN apt-get update && apt-get -y install sudo && apt-get install -y locales \
   && apt-get -qqy --no-install-recommends install \
     ca-certificates \
     unzip \
