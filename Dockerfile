@@ -28,7 +28,7 @@ RUN apt-get update && apt-get -y install sudo && apt-get install -y locales \
   && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers \
   && echo 'seluser:a123456789' | chpasswd \
   && apt-get -qqy install openssh-server \
-  && apt-get clean && rm -rf /var/lib/apt/lists/* \
+  && apt-get clean && rm -rf /var/lib/apt/lists/* &&\
   cd / && \
     wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz -O openjdk-11.0.2_linux-x64_bin.tar.gz && \
     tar zxf openjdk-11.0.2_linux-x64_bin.tar.gz && rm -f openjdk-11.0.2_linux-x64_bin.tar.gz && \
@@ -52,7 +52,7 @@ RUN apt-get update && apt-get -y install sudo && apt-get install -y locales \
     libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libgstreamer-plugins-bad1.0-dev \
     gstreamer1.0-libav gstreamer1.0-vaapi gstreamer1.0-tools \
     gfortran python2.7-dev python3-dev build-essential pkg-config && \
-	&& apt-get clean && rm -rf /var/lib/apt/lists/* && \
+	apt-get clean && rm -rf /var/lib/apt/lists/* && \
   cd /root && \
     wget https://github.com/opencv/opencv/archive/3.4.5.tar.gz -O opencv.tar.gz && \
     tar zxf opencv.tar.gz && rm -f opencv.tar.gz && \
@@ -88,10 +88,10 @@ RUN apt-get update && apt-get -y install sudo && apt-get install -y locales \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
   apt-get -qqy --no-install-recommends install libopencv3.2-java && \
     sudo ln -s /usr/lib/jni/libopencv_java320.so /usr/lib/libopencv_java.so && \
-	&& apt-get clean && rm -rf /var/lib/apt/lists/* && \
+	apt-get clean && rm -rf /var/lib/apt/lists/* && \
   apt-get -qqy --no-install-recommends install libopencv3.2-java && \
     sudo ln -s /usr/lib/jni/libopencv_java320.so /usr/lib/libopencv_java.so && \
-	&& apt-get clean && rm -rf /var/lib/apt/lists/* && \
+	apt-get clean && rm -rf /var/lib/apt/lists/* && \
   apt-get -qqy install \
     xvfb \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \ 
@@ -145,7 +145,7 @@ RUN apt-get update && apt-get -y install sudo && apt-get install -y locales \
     xfonts-100dpi \
     xfonts-75dpi \
     xfonts-cyrillic \
-    xfonts-scalable \
+    xfonts-scalable && \
   apt-get remove -y --auto-remove curl make gcc  && \
   apt-get clean                                  && \
   rm -rf /var/lib/apt/lists/*  /redis-$VER
