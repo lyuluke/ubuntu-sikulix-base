@@ -26,9 +26,9 @@ RUN apt-get update && apt-get -y install sudo && apt-get install -y locales \
   && sudo useradd seluser --shell /bin/bash --create-home \
   && sudo usermod -a -G sudo seluser \
   && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers \
-  && echo 'seluser:a123456789' | chpasswd \
-  && apt-get update && apt-get -qqy install openssh-server \
-  && apt-get clean && rm -rf /var/lib/apt/lists/* &&\
+  && echo 'seluser:a123456789' | chpasswd &&\
+  #&& apt-get update && apt-get -qqy install openssh-server \
+  #&& apt-get clean && rm -rf /var/lib/apt/lists/* &&\
   cd / && \
     wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz -O openjdk-11.0.2_linux-x64_bin.tar.gz && \
     tar zxf openjdk-11.0.2_linux-x64_bin.tar.gz && rm -f openjdk-11.0.2_linux-x64_bin.tar.gz && \
