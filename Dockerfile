@@ -169,12 +169,6 @@ RUN &&\
   dpkg-reconfigure --frontend noninteractive locales &&\
   apt-get -qqy --no-install-recommends install \
     language-pack-en &&\
-
-#==================================================
-# pika
-#==================================================
-  pip3 install pika && \
-  apt-get -qqy --no-install-recommends install curl &&\
   apt-get -qqy --no-install-recommends install \
     fonts-ipafont-gothic \
     xfonts-100dpi \
@@ -183,10 +177,20 @@ RUN &&\
     xfonts-scalable && \
 
 #==================================================
-# apt clean
+# pika
+#==================================================
+  pip3 install pika && \
+  
+#==================================================
+# install curl
+#==================================================
+  apt-get -qqy install curl &&\
+  
+#==================================================
+# apt-get remove and clean
 #==================================================
 
-  apt-get remove -y --auto-remove curl make gcc  && \
+  apt-get remove -y --auto-remove make gcc  && \
   apt-get clean                                  && \
   rm -rf /var/lib/apt/lists/*  /redis-$VER
 
