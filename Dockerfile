@@ -50,8 +50,8 @@ RUN &&\
 # Install OpenCV Dependent library
 #==================================================
     echo 'deb http://security.ubuntu.com/ubuntu xenial-security main' >> /etc/apt/sources.list && \
-    apt-get install tzdata -qy && \
-    apt-get install -qy \
+    apt-get -qqy install tzdata && \
+    apt-get -qqy install \
     cmake git\
     python-numpy python-scipy python-pip python-setuptools \
     python3-numpy python3-scipy python3-pip python3-setuptools \
@@ -95,8 +95,8 @@ RUN &&\
     .. && make -j $(nproc) && make install && \
     cd /root && rm -rf opencv-3.4.5 opencv_contrib-3.4.5 && \
 
-    apt-get install x11-apps vainfo git -qy && \
-    apt-get purge -qy \
+    apt-get -qqy install x11-apps vainfo git && \
+    apt-get -qqy purge \
     build-essential \
     libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev \
     libv4l-dev libxvidcore-dev libx264-dev libgtk2.0-dev libatlas-base-dev \
@@ -119,13 +119,13 @@ RUN &&\
 #==================================================
 # Install tesseract
 #==================================================
-  apt-get -qqy remove tesseract-ocr* \
-    libleptonica-dev &&\
-  apt-get autoclean -qqy && sudo apt-get autoremove --purge -qqy &&\
-  apt-get -qqy --no-install-recommends install \
+  sudo apt-get -qqy remove tesseract-ocr* &&\
+  sudo apt-get -qqy remove libleptonica-dev &&\
+  sudo apt-get autoclean -qqy && sudo apt-get autoremove --purge -qqy &&\
+  sudo apt-get -qqy --no-install-recommends install \
     autoconf automake libtool autoconf-archive pkg-config \
     libpng-dev libjpeg8-dev libtiff5-dev zlib1g-dev libicu-dev \
-    libpango1.0-dev libcairo2-dev &&\
+    libpango1.0-dev libcairo2-dev && \
   cd /root && \
     wget http://www.leptonica.org/source/leptonica-1.74.4.tar.gz -O leptonica-1.74.4.tar.gz && \
     tar zxf leptonica-1.74.4.tar.gz && rm -f leptonica-1.74.4.tar.gz && \
@@ -190,8 +190,8 @@ RUN &&\
 #==================================================
 
   apt-get remove -y --auto-remove make gcc  && \
-  apt-get clean                                  && \
-  rm -rf /var/lib/apt/lists/*  /redis-$VER
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*  /redis-$VER 
 
 #==================================================
 # Env
