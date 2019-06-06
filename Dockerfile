@@ -121,7 +121,6 @@ RUN &&\
 #==================================================
   apt-get -qqy remove tesseract-ocr* \
     libleptonica-dev &&\
-  apt-get update &&
   apt-get autoclean -qqy && sudo apt-get autoremove --purge -qqy &&\
   apt-get -qqy --no-install-recommends install \
     autoconf automake libtool autoconf-archive pkg-config \
