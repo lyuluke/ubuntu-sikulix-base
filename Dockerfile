@@ -140,12 +140,13 @@ RUN apt-get update && apt-get -y install sudo && apt-get install -y locales \
     language-pack-en \
     && apt-get clean && rm -rf /var/lib/apt/lists/* && \
   pip3 install pika && \
+  apt-get update && apt-get -qqy --no-install-recommends install curl &&\
+  apt-get clean && rm -rf /var/lib/apt/lists/* && \
   apt-get update && apt-get -qqy --no-install-recommends install \
     fonts-ipafont-gothic \
     xfonts-100dpi \
     xfonts-75dpi \
     xfonts-cyrillic \
-    curl \
     xfonts-scalable && \
   apt-get remove -y --auto-remove curl make gcc  && \
   apt-get clean                                  && \
