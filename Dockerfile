@@ -9,7 +9,7 @@ LABEL  maintainer="LK"
 COPY entry_point.sh /opt/bin/entry_point.sh
 
 
-RUN &&\
+RUN \
 #==================================================
 # sudo, locales , ca-certificates , unzip , wget
 #==================================================
