@@ -196,11 +196,11 @@ RUN \
 #==================================================
 # Env
 #==================================================  
-ENV SCREEN_WIDTH 1920
-ENV SCREEN_HEIGHT 1200
-ENV SCREEN_DEPTH 24
-ENV DISPLAY :0
-ENV LANGUAGE en_US.UTF-8
-ENV LANG en_US.UTF-8	
-EXPOSE 5900
-CMD ["/bin/bash"]
+#ENV SCREEN_WIDTH 1920
+#ENV SCREEN_HEIGHT 1200
+#ENV SCREEN_DEPTH 24
+#ENV DISPLAY :0
+#ENV LANGUAGE en_US.UTF-8
+#ENV LANG en_US.UTF-8	
+#EXPOSE 5900
+#CMD ["/bin/bash"]
