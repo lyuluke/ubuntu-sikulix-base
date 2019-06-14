@@ -180,6 +180,7 @@ RUN \
 # pika
 #==================================================
   pip3 install pika && \
+  pip3 install requests && \
   apt-get update && apt-get -qqy --no-install-recommends install curl &&\
   apt-get clean && rm -rf /var/lib/apt/lists/* && \
   apt-get update && apt-get -qqy --no-install-recommends install \
