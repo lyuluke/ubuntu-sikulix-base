@@ -5,7 +5,7 @@ FROM ubuntu:18.04
 #thanks https://github.com/kkochubey1/docker_sikuli_chrome_x11vnc
 
 LABEL  maintainer="LK"
-
+ENV DEBIAN_FRONTEND noninteractive
 COPY entry_point.sh /opt/bin/entry_point.sh
 
 # ubuntu chinese source
@@ -53,7 +53,7 @@ RUN \
 	echo 'deb http://security.ubuntu.com/ubuntu xenial-security main' >> /etc/apt/sources.list && \
 	apt-get update && apt-get install tzdata -qy && \
     apt-get install -qy \
-    cmake git\
+    cmake git \
     python-numpy python-scipy python-pip python-setuptools \
     python3-numpy python3-scipy python3-pip python3-setuptools \
     xauth \
@@ -181,7 +181,7 @@ RUN \
 #==================================================
   pip3 install pika && \
   pip3 install requests && \
-  apt-get update && apt-get -qqy --no-install-recommends install curl &&\
+  apt-get update && apt-get -qqy --no-install-recommends install curl && \
   apt-get clean && rm -rf /var/lib/apt/lists/* && \
   apt-get update && apt-get -qqy --no-install-recommends install \
     fonts-ipafont-gothic \
@@ -190,8 +190,8 @@ RUN \
     xfonts-cyrillic \
     xfonts-scalable && \
   apt-get remove -y --auto-remove unzip make gcc  && \
-  apt-get clean                                  && \
-  rm -rf /var/lib/apt/lists/*  /redis-$VER &&\
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*  /redis-$VER && \
   
   chmod +x /opt/bin/entry_point.sh
 #==================================================
