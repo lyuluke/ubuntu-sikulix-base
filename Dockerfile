@@ -181,7 +181,6 @@ RUN \
 #==================================================
   pip3 install pika && \
   pip3 install requests && \
-  pip3 install paramiko && \
   apt-get update && apt-get -qqy --no-install-recommends install curl && \
   apt-get clean && rm -rf /var/lib/apt/lists/* && \
   apt-get update && apt-get -qqy --no-install-recommends install \
